@@ -11,11 +11,18 @@ public class CarController : MonoBehaviour
 
     [Header("Axle Info")]
     public List<Axle> axles;
-    	
-	void FixedUpdate()
+
+    private CarAgent agent;
+
+    private void Start()
     {
-        float motor = Input.GetAxis("Vertical") * motorTorque;
-        float steer = Input.GetAxis("Horizontal") * maxSteeringAngle;
+        agent = GetComponent<CarAgent>();
+    }
+
+    void FixedUpdate()
+    {
+        float motor = agent.vertical * motorTorque;
+        float steer = agent.horizontal * maxSteeringAngle;
 
         foreach (Axle axle in axles)
         {
@@ -24,7 +31,7 @@ public class CarController : MonoBehaviour
                 axle.colLeft.motorTorque = motor;
                 axle.colRight.motorTorque = motor;
 
-                if (Input.GetKey(KeyCode.Space))
+                if (agent.brake)
                 {
                     axle.colLeft.brakeTorque = brakeTorque * 1000;
                     axle.colRight.brakeTorque = brakeTorque * 1000;

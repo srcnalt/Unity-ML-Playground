@@ -752,7 +752,7 @@ MonoBehaviour:
   m_Name: (Clone)
   m_EditorClassIdentifier: 
   broadcast: 1
-  brain: {fileID: 0}
+  brain: {fileID: 1248801074}
 --- !u!1 &1248801072
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +762,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1248801073}
   - component: {fileID: 1248801074}
+  - component: {fileID: 1248801075}
   m_Layer: 0
   m_Name: Brain
   m_TagString: Untagged
@@ -795,19 +796,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brainParameters:
     stateSize: 0
-    actionSize: 0
+    actionSize: 5
     memorySize: 0
     cameraResolutions: []
-    actionDescriptions: []
+    actionDescriptions:
+    - 
+    - 
+    - 
+    - 
+    - 
     actionSpaceType: 0
     stateSpaceType: 1
-  brainType: 0
+  brainType: 1
   CoreBrains:
   - {fileID: 1885557198}
   - {fileID: 1136004665}
   - {fileID: 2050613474}
   - {fileID: 286753729}
   instanceID: -32446
+--- !u!114 &1248801075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1248801072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808e688430fa52e438f51aad81c9d3e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1265485105
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,6 +836,7 @@ GameObject:
   - component: {fileID: 1265485107}
   - component: {fileID: 1265485106}
   - component: {fileID: 1265485109}
+  - component: {fileID: 1265485110}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -896,6 +914,32 @@ MonoBehaviour:
     left: {fileID: 592341063}
     isMotor: 1
     canSteer: 0
+--- !u!114 &1265485110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1265485105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d83834c0d94f4439c7902143a4cfd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 1248801074}
+  observations: []
+  maxStep: 0
+  resetOnDone: 1
+  reward: 0
+  done: 0
+  value: 0
+  CumulativeReward: 0
+  stepCounter: 0
+  agentStoredAction: []
+  memory: []
+  id: 0
+  horizontal: 0
+  vertical: 0
+  brake: 0
 --- !u!1 &1272911735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,9 +1242,30 @@ MonoBehaviour:
   m_Name: (Clone)
   m_EditorClassIdentifier: 
   broadcast: 1
-  continuousPlayerActions: []
-  discretePlayerActions: []
-  defaultAction: 0
+  continuousPlayerActions:
+  - key: 0
+    index: 0
+    value: 1
+  - key: 119
+    index: 1
+    value: 1
+  - key: 115
+    index: 2
+    value: 1
+  - key: 97
+    index: 3
+    value: -1
+  - key: 100
+    index: 4
+    value: 1
+  discretePlayerActions:
+  - key: 119
+    value: 1
+  - key: 97
+    value: 2
+  - key: 100
+    value: 3
+  defaultAction: 1
   brain: {fileID: 1248801074}
 --- !u!1 &1954128286
 GameObject:
@@ -1229,7 +1294,7 @@ Transform:
   m_Children:
   - {fileID: 1360569966}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2043154379
 GameObject:
@@ -1259,7 +1324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteps: 0
-  frameToSkip: 0
+  frameToSkip: 20
   waitTime: 0
   isInference: 1
   trainingConfiguration:
@@ -1290,7 +1355,7 @@ Transform:
   m_Children:
   - {fileID: 1248801073}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2050613474
 MonoBehaviour:
