@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CarAgent : Agent
 {
@@ -12,6 +13,10 @@ public class CarAgent : Agent
     public bool brake;
 
     public SensoryRays sensors;
+    public Text debugText;
+
+    private int pass;
+    private int fail;
 
     public override List<float> CollectState()
     {
@@ -49,16 +54,18 @@ public class CarAgent : Agent
                 brake = true;
                 break;
         }
-        
-        if(sensors.colorLeft == 1 && sensors.colorMid == 1 && sensors.colorRight == 1)
+
+        if(sensors.colorLeft != 0 && sensors.colorMid != 0 && sensors.colorRight != 0)
         {
             reward = -1;
             done = true;
+            fail++;
         }
         else if(transform.position.z > 0)
         {
             reward = 1;
             done = true;
+            fail--;
         }
         else if (sensors.colorLeft != 0 && sensors.colorMid == 0 && sensors.colorRight != 0)
         {
@@ -68,10 +75,14 @@ public class CarAgent : Agent
         {
             reward = -0.01f;
         }
+
+        Debug.Log(sensors.colorLeft + " | " + sensors.colorMid + " | " + sensors.colorRight);
     }
 
     public override void AgentReset()
     {
+        debugText.text = pass + " | " + fail;
+
         transform.GetComponent<Rigidbody>().isKinematic = true;
 
         horizontal = 0;

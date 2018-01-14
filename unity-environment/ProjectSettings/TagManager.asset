@@ -6,6 +6,8 @@ TagManager:
   tags:
   - agent
   - iWall
+  - Wall
+  - Paddle
   layers:
   - Default
   - TransparentFX
