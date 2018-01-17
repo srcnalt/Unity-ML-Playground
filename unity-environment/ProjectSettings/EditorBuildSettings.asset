@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/ML-Agents/Examples/1 - Self Driving Car/Game.unity
     guid: 8eda30962e81b884e9dd5f03258bd383
-  - enabled: 1
-    path: Assets/ML-Agents/Examples/2 - Pong/Game.unity
+  - enabled: 0
+    path: Assets/ML-Agents/Examples/2 - Pong/Train.unity
     guid: c7f079cb1f9db4149a46858e55816d72
+  - enabled: 1
+    path: Assets/ML-Agents/Examples/2 - Pong/Play.unity
+    guid: 844995b1fbd6d2c4b840283426a7dda1

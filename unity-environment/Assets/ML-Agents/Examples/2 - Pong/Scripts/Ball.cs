@@ -7,6 +7,11 @@ public class Ball : MonoBehaviour
     public float speed;
     public Transform paddle;
     public float hitPoint;
+    public bool speedUp;
+
+    [Header("Score Texts")]
+    public TextMesh scoreAI;
+    public TextMesh scorePL;
 
     [HideInInspector]
     public Vector3 direction;
@@ -24,7 +29,7 @@ public class Ball : MonoBehaviour
         }
     }
 
-    public Borders borders = new Borders(9.2f, -9.2f, -12f, 11.2f);
+    public Borders borders = new Borders(13f, -13f, -23f, 21f);
 	
 	// Update is called once per frame
 	void Update ()
@@ -58,21 +63,17 @@ public class Ball : MonoBehaviour
         {
             transform.position += new Vector3(paddle.localScale.x / 2, 0, 0);
 
-            FindObjectOfType<PongAgent>().reward = 0.5f;
-            FindObjectOfType<PongAgent>().score++;
+            FindObjectOfType<PongAgent>().reward = 1f;
+            FindObjectOfType<PongAgent>().done = true;
+
+            scoreAI.text = (int.Parse(scoreAI.text) + 1).ToString();
 
             hitPoint = (paddle.position.y - transform.position.y) * 2 / paddle.localScale.y;
 
-            direction.x *= -1;
+            direction.x = -direction.x + 1;
             direction.y -= hitPoint;
-        }
-    }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(
-            paddle.position + new Vector3(0, paddle.localScale.y / 2, 0),
-            paddle.position - new Vector3(0, paddle.localScale.y / 2, 0));
+            direction.Normalize();
+        }
     }
 }
